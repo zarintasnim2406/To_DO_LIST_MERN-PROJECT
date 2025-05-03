@@ -1,0 +1,13 @@
+const express = require("express");
+const{adminOnly,protect} = require ("../middlewares/authMiddleware");
+const {getUsers, getUserById} = require("../controllers/userController");
+const router= express.Router();
+
+//User Management Roles
+
+router.get("/", protect, adminOnly, getUsers); // Get all users (admin only)
+router.get("/:id", protect, getUserById); // Get a specific user
+router.get("/:id",protect, adminOnly);
+
+
+module.exports = router;
